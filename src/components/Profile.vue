@@ -1,31 +1,34 @@
 <template>
     <div class="profile">
         <div class="image">
-            <img src="">
-            <a href="#" target="_blank" class="view-profile">
+            <img :src="user.avatar_url">
+            <a :href="'https://github.com/' + user.login" target="_blank" class="view-profile">
                 View Github Profile
             </a>
         </div>
         <div class="content">
             <div class="content-header">
-                <span>Repos: </span>
-                <span>Gists: </span>
-                <span>Followers: </span>
-                <span>Following: </span>
+                <span>Repos: {{ user.public_repos }} </span>
+                <span>Gists: {{ user.public_gists }} </span>
+                <span>Followers: {{ user.followers }} </span>
+                <span>Following: {{ user.following }} </span>
             </div>
             <div class="content-text">
                 <ul>
-                    <li>
-                        <span>Name: </span>
+                    <li v-if="user.name == null || user.blog == null || user.blog == ''">
+                        <span style="color: darkred; font-size: 20px">Places that are empty about the account are not shown!</span>
+                    </li>
+                    <li v-if="user.name != null">
+                        <span>Name: <b>{{user.name}}</b></span>
+                    </li>
+                    <li v-if="user.blog != ''" >
+                        <span>Website: <a target="_blank" :href="'http://' + user.blog">{{ user.blog }}</a> </span>
+                    </li>
+                    <li v-if="user.location != null" >
+                        <span>Location: <b>{{ user.location }}</b></span>
                     </li>
                     <li>
-                        <span>Website: </span>
-                    </li>
-                    <li>
-                        <span>Location: </span>
-                    </li>
-                    <li>
-                        <span>Since when a member: </span> 
+                        <span>Since when a member: <b>{{ user.created_at }}</b></span> 
                     </li>
                 </ul>
             </div>
@@ -35,7 +38,11 @@
 
 <script>
 export default {
-
+    computed:{
+        user(){
+            return this.$store.getters.user
+        }
+    }
 }
 </script>
 
@@ -58,6 +65,7 @@ export default {
         img{
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
         .view-profile{
             position: absolute;
@@ -97,6 +105,7 @@ export default {
         }
         &-text{
             width: 100%;
+            padding-left: 10px;
             height: calc(100% - 60px);
             ul{
                 width: 100%;
@@ -110,6 +119,13 @@ export default {
                     align-items: center;
                     span{
                         font-weight: 500;
+                        font-size: 17px;
+                        b, a{
+                            font-size: 19px;
+                            text-decoration: none;
+                            color: black;
+                            font-weight: bold;
+                        }
                     }
                 }
             }

@@ -3,15 +3,33 @@
       <div class="form">
         <span>Enter a username and access user information!</span>
         <div class="inputBox">
-          <input type="text" placeholder="Github Username">
-          <button>Search</button>
+          <input type="text" @keydown.enter="search" v-model="searchUsername" placeholder="Github Username">
+          <button @click="search">Search</button>
         </div>
       </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex"
 export default {
+  data(){
+    return{
+      searchUsername: "",
+    }
+  },
+  computed: {
+    ...mapState(["username"])
+  },
+  methods: {
+    ...mapActions(["fetchUser"]),
+    search(){
+      if(this.searchUsername !== ""){
+        this.fetchUser(this.searchUsername)
+        this.searchUsername = ""
+      }
+    }
+  }
 
 }
 </script>

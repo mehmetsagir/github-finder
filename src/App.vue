@@ -2,9 +2,9 @@
   <div id="app" class="container">
     <Nav />
     <Search />
-    <Error />
-    <Profile />
-    <Repos />
+    <Error v-if="this.$store.state.userNotFound" />
+    <Profile v-if="this.$store.state.user != null" />
+    <Repos v-if="this.$store.state.userRepos != null" />
   </div>
 </template>   
 

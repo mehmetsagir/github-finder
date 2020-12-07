@@ -1,15 +1,15 @@
 <template>
   <div class="repos">
-      <h4>Repositories</h4>
-      <div class="repo">
-          <div class="repo-name">twitter-clone</div>
+      <h4>Public Repositories</h4>
+      <div class="repo" v-for="repo in repos" :key="repo.id">
+          <div class="repo-name">{{ repo.name }}</div>
           <div class="repo-link">
-              <a href="#">Go to repo</a>
+              <a target="_blank" :href="repo.html_url">Go to repo</a>
           </div>
           <div class="repo-attr">
-              <span>Stars: 85</span>
-              <span>Watchers: 458</span>
-              <span>Forks: 5578454</span>
+              <span>Stars: {{ repo.stargazers_count }} </span>
+              <span>Watchers: {{ repo.watchers }}</span>
+              <span>Forks: {{ repo.forks }}</span>
           </div>
       </div>
   </div>
@@ -17,21 +17,24 @@
 
 <script>
 export default {
-
+    computed:{
+        repos(){
+            return this.$store.getters.repos
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 .repos{
     width: 100%;
-    margin: 30px 0;
     h4{
         font-size: 34px;
-        margin: 5px 0 15px 0;
+        margin: 60px 0 25px 0;
     }
     .repo{
         width: 100%;
-        height: 60px;
+        min-height: 60px;
         background: #1D3144;
         margin-bottom: 20px;
         display: flex;
@@ -40,6 +43,7 @@ export default {
         color: white;
         padding: 0 15px;
         &-name{
+            line-height: 35px;
             flex: 1;
             font-size: 22px;
             text-transform: uppercase;
