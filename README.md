@@ -1,19 +1,24 @@
-# github-finder
+# Github Finder
+✨ **Live Demo ->** [github.memetsagir.com](http://github.memetsagir.com)
+> By coming to the directory where the project is located.
 
-## Project setup
+## To install dependencies
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
+## To run the project
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
+## Preparing the project for the production environment
 ```
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Author✍️
+👤 Mehmet Sağır
+
+___
+
+### Licance
+* MIT
