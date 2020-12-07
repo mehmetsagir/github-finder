@@ -1,5 +1,5 @@
 # Github Finder
-✨ **Live Demo ->** [github.memetsagir.com](http://github.memetsagir.com)
+✨ **Live Demo ->** [github-finder.memetsagir.com](http://github-finder.memetsagir.com)
 > By coming to the directory where the project is located.
 
 ## To install dependencies
