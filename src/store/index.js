@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import Axios from 'axios'
+import Vue from "vue";
+import Vuex from "vuex";
+import Axios from "axios";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -13,47 +13,58 @@ export default new Vuex.Store({
     userNotFound: false,
   },
   mutations: {
-    setUsername(state, data){
+    setUsername(state, data) {
       state.username = data;
-    }
+    },
   },
   actions: {
-    fetchUser({commit}, data){
-      commit('setUsername', data)
-      if(this.state.username.length > 0){
-        Axios.get(this.state.baseURL + this.state.username).then(response => {
-          this.state.user = response.data;
-          this.state.userNotFound = false
-        }).catch(() => {
-          this.state.userNotFound = true
-          this.state.user = null
-          this.state.userRepos = null
-          console.clear()
-          setTimeout(() => {this.state.userNotFound = false}, 5000)
-        })
-        Axios.get(this.state.baseURL + this.state.username + '/repos').then(response => {
-          if(response.data.length > 0){
-            this.state.userRepos = response.data;
-            this.state.userNotFound = false
-          }else{
+    fetchUser({ commit }, data) {
+      commit("setUsername", data);
+      if (this.state.username.length > 0) {
+        Axios.get(this.state.baseURL + this.state.username)
+          .then((response) => {
+            this.state.user = response.data;
+            this.state.userNotFound = false;
+          })
+          .catch(() => {
+            this.state.userNotFound = true;
+            this.state.user = null;
             this.state.userRepos = null;
-          }
-        }).catch(() => {
-          this.state.userNotFound = true
-          this.state.user = null
-          this.state.userRepos = null
-          console.clear()
-          setTimeout(() => {this.state.userNotFound = false}, 5000)
-        })
+            console.clear();
+            setTimeout(() => {
+              this.state.userNotFound = false;
+            }, 5000);
+          });
+        Axios.get(this.state.baseURL + this.state.username + "/repos")
+          .then((response) => {
+            if (response.data.length > 0) {
+              this.state.userRepos = response.data;
+              this.state.userRepos.sort((repoA, repoB) => {
+                return repoA.stargazers_count < repoB.stargazers_count ? 1 : -1;
+              });
+              this.state.userNotFound = false;
+            } else {
+              this.state.userRepos = null;
+            }
+          })
+          .catch(() => {
+            this.state.userNotFound = true;
+            this.state.user = null;
+            this.state.userRepos = null;
+            console.clear();
+            setTimeout(() => {
+              this.state.userNotFound = false;
+            }, 5000);
+          });
       }
-    }    
+    },
   },
   getters: {
-    repos(state){
-      return state.userRepos
+    repos(state) {
+      return state.userRepos;
     },
-    user(state){
-      return state.user
-    }
-  }
-})
+    user(state) {
+      return state.user;
+    },
+  },
+});
