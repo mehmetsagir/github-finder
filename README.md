@@ -1,5 +1,5 @@
 # Github Finder
-✨ **Live Demo ->** [github-finder.memetsagir.com](http://github-finder.memetsagir.com)
+✨ **Live Demo ->** [github-finder-ms.netlify.app/](https://github-finder-ms.netlify.app/)
 > By coming to the directory where the project is located.
 
 ## To install dependencies
