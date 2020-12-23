@@ -46,7 +46,6 @@ export default {
             line-height: 35px;
             flex: 1;
             font-size: 22px;
-            text-transform: uppercase;
         }
         &-link{
             flex: 1;
@@ -59,7 +58,7 @@ export default {
                 border-radius: 3px;
             }
         }
-        &-attr{ 
+        &-attr{
             flex: 3;
             display: flex;
             justify-content: space-evenly;
