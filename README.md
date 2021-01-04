@@ -19,4 +19,4 @@ npm run build
 👤 Mehmet Sağır
 
 ## License
-MIT lisansı altında lisanslıdır, ayrıntılar için LICENSE.md'ye bakın.
+Licensed under the MIT license, see [LICENSE.md](LICENSE.md) for details.
