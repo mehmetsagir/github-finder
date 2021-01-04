@@ -17,3 +17,6 @@ npm run build
 
 ## Author✍️
 👤 Mehmet Sağır
+
+## License
+MIT lisansı altında lisanslıdır, ayrıntılar için LICENSE.md'ye bakın.
